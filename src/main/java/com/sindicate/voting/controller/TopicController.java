@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -46,12 +45,6 @@ public class TopicController {
 	public TopicEntity saveTopic(@RequestBody @Valid TopicEntity topicEntity) {
 		return topicService.save(topicEntity);
 	}
-	
-	@PutMapping
-	public TopicEntity updateTopic(@RequestBody @Valid TopicEntity topicEntity) {
-		return topicService.save(topicEntity);
-	}
-	
 	
 	@DeleteMapping("/{id}")
 	public void deleteTopic(@PathVariable("id") Long id) {

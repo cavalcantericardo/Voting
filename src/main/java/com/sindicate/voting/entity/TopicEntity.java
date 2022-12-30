@@ -38,7 +38,7 @@ public class TopicEntity {
 	private String title;
 
 	
-	@NotBlank@NotBlank(message = "Description not informed, blank or empty")
+	@NotBlank(message = "Description not informed, blank or empty")
 	@Column(name = "to_description",
 			nullable = false,
 			columnDefinition = "TEXT")
