@@ -14,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "db_topic")
@@ -30,13 +31,14 @@ public class TopicEntity {
 	@OneToMany(mappedBy = "topicEntity")
 	private Set<VotesEntity> votesEntity = new HashSet<>();
 
+	@NotBlank(message = "Title not informed, blank or empty")
 	@Column(name = "to_title",
 			nullable = false,
 			columnDefinition = "TEXT")
 	private String title;
 
 	
-	
+	@NotBlank@NotBlank(message = "Description not informed, blank or empty")
 	@Column(name = "to_description",
 			nullable = false,
 			columnDefinition = "TEXT")

@@ -13,6 +13,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 
 @Entity
@@ -34,8 +36,9 @@ public class VotesEntity {
     @JoinColumn(name="topic_id", referencedColumnName = "to_id")
     private TopicEntity topicEntity;
     
-
-    @Column(name="vote")
+    @NotBlank(message = "Vote not informed, blank or empty")
+    @Pattern(regexp = "^(?:yes|no)$",message = "Invalid vote, please send a vote as \"yes\" or \"no\"")
+    @Column(name="vote",nullable=false, updatable = false)
     private String vote;
     
 	@Column
@@ -47,7 +50,6 @@ public class VotesEntity {
 		    this.createdTimestamp = LocalDateTime.now();
 		  }
 		
-	  
 /* GETTERS AND SETTERS*/
 
 	public Long getId() {

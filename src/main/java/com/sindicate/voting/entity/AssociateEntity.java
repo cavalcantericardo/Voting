@@ -3,6 +3,8 @@ package com.sindicate.voting.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.hibernate.validator.constraints.br.CPF;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -12,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "db_associate")
@@ -27,14 +30,14 @@ public class AssociateEntity {
 	@OneToMany(mappedBy = "associateEntity")
 	private Set<VotesEntity> votesEntity = new HashSet<>();
 
-	
+	@NotBlank(message = "Name not informed, blank or empty")
 	@Column(name = "as_name",
-			nullable = false,
 			columnDefinition = "TEXT")
 	private String name;
 	
+	@NotBlank(message = "CPF not informed, blank or empty")
+	@CPF(message = "Invalid CPF,please send a valid CPF")
 	@Column(name = "as_cpf",
-			nullable = false,
 			unique = true,
 			columnDefinition = "VARCHAR",
 			length = 11
