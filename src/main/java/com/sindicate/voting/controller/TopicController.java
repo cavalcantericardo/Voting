@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sindicate.voting.entity.TopicEntity;
-import com.sindicate.voting.repository.TopicRepository;
+import com.sindicate.voting.service.TopicService;
 
 import jakarta.validation.Valid;
 
@@ -30,32 +30,32 @@ import jakarta.validation.Valid;
 public class TopicController {
 	
 	@Autowired
-	private TopicRepository topicRepository;
+	private TopicService topicService;
 
 	@GetMapping
 	public List<TopicEntity> findAllTopic(){
-		return topicRepository.findAll();
+		return topicService.findAll();
 	}
 	
 	@GetMapping("/{id}")
 	public Optional<TopicEntity> findTopicId(@PathVariable("id") Long id){
-		return topicRepository.findById(id);
+		return topicService.findById(id);
 	}
 	
 	@PostMapping
 	public TopicEntity saveTopic(@RequestBody @Valid TopicEntity topicEntity) {
-		return topicRepository.save(topicEntity);
+		return topicService.save(topicEntity);
 	}
 	
 	@PutMapping
 	public TopicEntity updateTopic(@RequestBody @Valid TopicEntity topicEntity) {
-		return topicRepository.save(topicEntity);
+		return topicService.save(topicEntity);
 	}
 	
 	
 	@DeleteMapping("/{id}")
 	public void deleteTopic(@PathVariable("id") Long id) {
-		topicRepository.deleteById(id);
+		topicService.deleteById(id);
 	}
 	
     @ResponseStatus(HttpStatus.BAD_REQUEST)

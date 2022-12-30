@@ -56,6 +56,26 @@ public class VotesEntity {
 		return id;
 	}
 
+	public AssociateEntity getAssociateEntity() {
+		return associateEntity;
+	}
+
+	public void setAssociateEntity(AssociateEntity associateEntity) {
+		this.associateEntity = associateEntity;
+	}
+
+	public TopicEntity getTopicEntity() {
+		return topicEntity;
+	}
+
+	public void setTopicEntity(TopicEntity topicEntity) {
+		this.topicEntity = topicEntity;
+	}
+
+	public LocalDateTime getCreatedTimestamp() {
+		return createdTimestamp;
+	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}

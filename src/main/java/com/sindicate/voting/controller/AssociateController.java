@@ -22,7 +22,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sindicate.voting.entity.AssociateEntity;
-import com.sindicate.voting.repository.AssociateRepository;
+
+import com.sindicate.voting.service.AssociateService;
 
 import jakarta.validation.Valid;
 
@@ -31,33 +32,32 @@ import jakarta.validation.Valid;
 public class AssociateController {
 	
 	@Autowired
-	private AssociateRepository associateRepository;
-
+	private AssociateService associateService;
 
 	@GetMapping
 	public List<AssociateEntity> findAllAssociate(){
-		return associateRepository.findAll();
+		return associateService.findAll();
 	}
 	
 	@GetMapping("/{id}")
 	public Optional<AssociateEntity> findAssociateId(@PathVariable("id") Long id){
-		return associateRepository.findById(id);
+		return associateService.findById(id);
 	}
 	
 	@PostMapping() 
 	public AssociateEntity saveAssociate(@RequestBody @Valid AssociateEntity associateEntity) {
-		return associateRepository.save(associateEntity);
+		return associateService.save(associateEntity);
 	}
 	
 	@PutMapping
 	public AssociateEntity updateAssociate(@RequestBody @Valid AssociateEntity associateEntity) {
-		return associateRepository.save(associateEntity);
+		return associateService.save(associateEntity);
 	}
 	
 	
 	@DeleteMapping("/{id}")
 	public void deleteAssociate(@PathVariable("id") Long id) {
-		associateRepository.deleteById(id);
+		associateService.deleteById(id);
 	}
 	
     @ResponseStatus(HttpStatus.BAD_REQUEST)
